@@ -1,0 +1,17 @@
+//max out at 15
+public class Lab6pt1 {
+
+	public static void main(String[] args) {
+	int a = 0;
+	int b = 1;
+	int c = 0;
+	System.out.println(a);
+	System.out.println(b);
+	for (int count = 3; count <= 15; count++) {
+		c = a +b;
+		System.out.println(c);
+		a = b;
+		b = c;
+	}
+}
+}
