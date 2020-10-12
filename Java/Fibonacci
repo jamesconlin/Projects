@@ -1,4 +1,6 @@
 //max out at 15
+//For java duh
+
 public class Lab6pt1 {
 
 	public static void main(String[] args) {
