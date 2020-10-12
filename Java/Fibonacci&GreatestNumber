@@ -1,0 +1,72 @@
+import java.util.Scanner;
+
+public class pt1 {
+
+	static void add(int num1, int num2)
+	{
+	int sum = (num1+num2);
+	System.out.println(num1 +"+"+num2+"="+sum);
+	}
+	static void fib(int count) {
+	int num1 = 0;
+	int num2 = 1;
+	int num3 = 0;
+	System.out.println(num1);
+	System.out.println(num2);
+	for (int counter = 3; counter <= count; counter++) {
+	num3 = num1 +num2;
+	System.out.println(num3);
+	num1 = num2;
+	num2 = num3;
+	}
+	}
+	static void greatest(int a_value, int b_value, int c_value) {
+	if (a_value > b_value && a_value > c_value) {
+	  System.out.println("A is the biggest number!");}
+	else if (b_value > a_value && b_value > c_value) {
+	  System.out.println("B is the biggest number!");}
+	else if (c_value > a_value && c_value > b_value)
+	  {System.out.println("C is the biggest number!");}
+	else { 
+	  System.out.println("Two or more numbers are the same");
+	}
+	}
+	static void sum(int sum) {
+		int n = 0;
+		int a = 1;
+		while (a<=sum) {
+		n = (n+a);
+		System.out.println(n);
+		a= a+1;
+		}
+		}
+	public static void main(String[] args) {
+		Scanner one = new Scanner(System.in);
+		System.out.println("Please enter the first number you would like to add");
+		int numA = one.nextInt();
+		Scanner two = new Scanner(System.in);
+		System.out.println("Please enter the second number you would like to add");
+		int numB = two.nextInt();
+		add(numA,numB);
+		Scanner fib = new Scanner(System.in);
+		System.out.println("How many numbers of the fibonachi sequence would you like to have?");
+		int counting = fib.nextInt();
+		fib(counting);
+		Scanner a = new Scanner(System.in);
+		System.out.println("What is the value of a?");
+		int a_value = a.nextInt();
+		Scanner b = new Scanner(System.in);
+		System.out.println("What is the value of b");
+		int b_value = b.nextInt();
+		Scanner c = new Scanner(System.in);
+		System.out.println("What is the value of c");
+		int c_value = c.nextInt();
+		greatest(a_value,b_value,c_value);
+		Scanner num = new Scanner(System.in);
+		System.out.println("Up to what number would you like to add up to?");
+		int numb = num.nextInt();
+		sum(numb);
+		one.close();two.close();fib.close();a.close();b.close();c.close(); num.close();
+	}
+
+}
