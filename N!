@@ -1,0 +1,20 @@
+import java.util.Scanner;
+\\Used for Calculating N!
+public class Lab6pt3 {
+	public static void main(String[] args) {
+		long t = 1;
+		Scanner number = new Scanner(System.in);
+		System.out.println("What number would you like to calculate n! ?");
+		Long num = number.nextLong();
+		for(long i = 1;i<=num;i++) {
+			t = i *t;
+			System.out.print(i);
+			if (i>=num) {
+				break;
+			}
+			System.out.print("*");
+			}
+		System.out.print(" "+"="+" "+t);
+		number.close();
+	}
+}
