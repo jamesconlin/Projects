@@ -1,0 +1,16 @@
+/home/jconlin/Code/Projects/C#/Read Line/bin/Debug/net5.0/Read Line
+/home/jconlin/Code/Projects/C#/Read Line/bin/Debug/net5.0/Read Line.deps.json
+/home/jconlin/Code/Projects/C#/Read Line/bin/Debug/net5.0/Read Line.runtimeconfig.json
+/home/jconlin/Code/Projects/C#/Read Line/bin/Debug/net5.0/Read Line.runtimeconfig.dev.json
+/home/jconlin/Code/Projects/C#/Read Line/bin/Debug/net5.0/Read Line.dll
+/home/jconlin/Code/Projects/C#/Read Line/bin/Debug/net5.0/ref/Read Line.dll
+/home/jconlin/Code/Projects/C#/Read Line/bin/Debug/net5.0/Read Line.pdb
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.csproj.AssemblyReference.cache
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.GeneratedMSBuildEditorConfig.editorconfig
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.AssemblyInfoInputs.cache
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.AssemblyInfo.cs
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.csproj.CoreCompileInputs.cache
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.dll
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/ref/Read Line.dll
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.pdb
+/home/jconlin/Code/Projects/C#/Read Line/obj/Debug/net5.0/Read Line.genruntimeconfig.cache
