@@ -1,5 +1,4 @@
-
-public class consecutiveIntegerAlgorithm {
+public class test {
 
 	public static void main(String[] arr) {
 		calcGCD();
@@ -25,7 +24,6 @@ public class consecutiveIntegerAlgorithm {
 		for (int pairs = 0; pairs<200; pairs++) {
 			int random = (int) (Math.random() *297001)+3000;
 			myArray[pairs]=random;
-			System.out.println(random);
 		}
 		while(i!=200) {
 		m = myArray[i];
@@ -38,11 +36,8 @@ public class consecutiveIntegerAlgorithm {
 			min = n;
 		}
 		while(i!=0) {
-			System.out.println(m);
 			if(m%min==0) {
 				if(n%min==0) {
-					
-					System.out.println("Found it!("+m+","+n+") = "+min);
 					count++;
 					break;
 				}
@@ -57,7 +52,6 @@ public class consecutiveIntegerAlgorithm {
 			min--;
 		
 		}
-		System.out.println(totalIteration);
 		if (totalIteration>maxIteration) {
 			max1 = m;
 			max2 = n;
@@ -73,7 +67,6 @@ public class consecutiveIntegerAlgorithm {
 		i++;
 		sum += totalIteration;
 		totalIteration=0;
-		System.out.println(count);
 		
 		}
 		sum = sum/count;
