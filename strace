@@ -1,0 +1,47 @@
+execve("./copy", ["./copy", "test", "test1"], 0x7ffe4e141090 /* 27 vars */) = 0
+brk(NULL)                               = 0x5621c5ae8000
+arch_prctl(0x3001 /* ARCH_??? */, 0x7ffed54888d0) = -1 EINVAL (Invalid argument)
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=21673, ...}, AT_EMPTY_PATH) = 0
+mmap(NULL, 21673, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7f3a43058000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0000\342\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+pread64(3, "\4\0\0\0 \0\0\0\5\0\0\0GNU\0\2\0\0\300\4\0\0\0\3\0\0\0\0\0\0\0"..., 48, 848) = 48
+pread64(3, "\4\0\0\0\24\0\0\0\3\0\0\0GNU\0\270\3{b`\206SF\200#!\335\"V\270\255"..., 68, 896) = 68
+newfstatat(3, "", {st_mode=S_IFREG|0644, st_size=2215936, ...}, AT_EMPTY_PATH) = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3a43056000
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2260144, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7f3a42e2e000
+mprotect(0x7f3a42e5a000, 2002944, PROT_NONE) = 0
+mmap(0x7f3a42e5a000, 1654784, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x2c000) = 0x7f3a42e5a000
+mmap(0x7f3a42fee000, 344064, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1c0000) = 0x7f3a42fee000
+mmap(0x7f3a43043000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x214000) = 0x7f3a43043000
+mmap(0x7f3a43049000, 52400, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7f3a43049000
+close(3)                                = 0
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7f3a42e2c000
+arch_prctl(ARCH_SET_FS, 0x7f3a430575c0) = 0
+set_tid_address(0x7f3a43057890)         = 2517
+set_robust_list(0x7f3a430578a0, 24)     = 0
+mprotect(0x7f3a43043000, 12288, PROT_READ) = 0
+mprotect(0x5621c55e0000, 4096, PROT_READ) = 0
+mprotect(0x7f3a43091000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x7f3a43058000, 21673)           = 0
+openat(AT_FDCWD, "test", O_RDONLY)      = 3
+openat(AT_FDCWD, "test1", O_WRONLY|O_CREAT|O_EXCL|O_NOCTTY|O_TRUNC|O_SYNC, 000) = 4
+read(3, "hi\n", 4096)                   = 3
+newfstatat(1, "", {st_mode=S_IFCHR|0600, st_rdev=makedev(0x4, 0x1), ...}, AT_EMPTY_PATH) = 0
+ioctl(1, TCGETS, {B38400 opost isig icanon echo ...}) = 0
+getrandom("\x05\x9a\xbc\x88\x04\x5b\x44\x03", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x5621c5ae8000
+brk(0x5621c5b09000)                     = 0x5621c5b09000
+write(1, "read \n", 6)                  = 6
+write(4, "hi\n", 3)                     = 3
+write(1, "successfully copied test -> test"..., 36) = 36
+close(3)                                = 0
+close(4)                                = 0
+exit_group(0)                           = ?
++++ exited with 0 +++
