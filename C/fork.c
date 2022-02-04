@@ -1,19 +1,25 @@
 #include <stdio.h> 
-#include "unistd.h"
+#include <unistd.h>
 
 int main()
 {
+    pid_t pid;
+    pid = fork();
  /*folk one process*/
- fork();
+
 
  /*fork another*/
- fork();
+
 
  /*folk another*/
- fork();
+
+
+printf("Child pid ", getpid());
+
+
 
  return 0;
 
 }
-
-
+// 4 Total Processes
+//printf("%ld%ld", (long)getpid(), (long)getppid());
