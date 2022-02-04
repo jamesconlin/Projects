@@ -1,0 +1,143 @@
+public class ConsecandEuc {
+
+	public static void main(String[] arr) {
+		calcGCD();
+	}
+	public static void calcGCD() {
+		int[] myArray = new int[200];
+		int[] myArray2 = new int[2];
+		int i = 0;
+		int m=0;
+		int n=0;
+		int totalIteration = 0;
+		int minIteration = 1000000;
+		int maxIteration = 0;
+		int count = 0;
+		int max1 = 0;
+		int max2 = 0;
+		int max3 = 0;
+		int min1 = 0;
+		int min2 = 0;
+		int min3 = 0;
+		int sum = 0;
+		int a ;
+		
+		
+		for (int pairs = 0; pairs<200; pairs++) {
+			int random = (int) (Math.random() *297001)+3000;
+			myArray[pairs]=random;
+		}
+        consec(myArray);
+		while(i!=200) {
+		m = myArray[i];
+		i++;
+		n = myArray[i];
+		i++;
+		myArray2 = call(m,n,totalIteration);
+		a=myArray2[0];
+		totalIteration=myArray2[1];
+		if (totalIteration>maxIteration) {
+			max1 = m;
+			max2 = n;
+			max3 = a;
+			maxIteration=totalIteration;
+		}
+		if (totalIteration<minIteration) {
+			min1 = m;
+			min2 = n;
+			min3 = a;
+			minIteration=totalIteration;
+		}
+		sum += totalIteration;
+		count++;
+		}
+		
+		sum = sum/count;
+		System.out.println("Euclidean");
+		System.out.println("The most number of iterations used is "+maxIteration+" iterations for GCD("+max1+","+max2+") = "+max3 );
+		System.out.println("The least number of iterations used is "+minIteration+" iterations for GCD("+min1+","+min2+") = "+min3 );
+		System.out.println("Average number of iterations for all 100 pairs "+sum);
+		return;
+	
+	}
+		public static int[] call(int m,int n,int totalIteration) 
+		{
+			if (m == 0) {
+				int [] arr = new int[2];
+				arr[0] = n;
+				arr[1] = totalIteration;
+				return arr;
+				}
+			totalIteration++;
+			return call(n%m, m, totalIteration);
+		}
+        public static void consec(int[] arry){
+            int i = 0;
+    		int m=0;
+    		int n=0;
+    		int totalIteration = 0;
+    		int minIteration = 1000000;
+    		int maxIteration = 0;
+    		int count = 0;
+    		int max1 = 0;
+    		int max2 = 0;
+    		int max3 = 0;
+    		int min1 = 0;
+    		int min2 = 0;
+    		int min3 = 0;
+    		int sum = 0;
+    		int a ;
+    		int min = 0;
+        	while(i!=200) {
+                m = arry[i];
+                i++;
+                n = arry[i];
+                if (m<n) {
+                    min = m;
+                }
+                else {
+                    min = n;
+                }
+                while(i!=0) {
+                    if(m%min==0) {
+                        if(n%min==0) {
+                            count++;
+                            break;
+                        }
+                        
+                        else {
+                            totalIteration++;
+                        }
+                    }
+                    else {
+                        totalIteration++;
+                    }
+                    min--;
+                
+                }
+                if (totalIteration>maxIteration) {
+                    max1 = m;
+                    max2 = n;
+                    max3 = min;
+                    maxIteration=totalIteration;
+                }
+                if (totalIteration<minIteration) {
+                    min1 = m;
+                    min2 = n;
+                    min3 = min;
+                    minIteration=totalIteration;
+                }
+                i++;
+                sum += totalIteration;
+                totalIteration=0;
+                
+                }
+                sum = sum/count;
+                System.out.println("Consecutive");
+                System.out.println("The most number of iterations used is "+maxIteration+" iterations for GCD("+max1+","+max2+") = "+max3 );
+                System.out.println("The least number of iterations used is "+minIteration+" iterations for GCD("+min1+","+min2+") = "+min3 );
+                System.out.println("Average number of iterations for all 100 pairs "+sum);
+           
+        return;
+        }
+}
