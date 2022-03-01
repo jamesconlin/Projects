@@ -1,0 +1,29 @@
+package cpuscheduling;
+
+public class RandomArrivalTime {
+
+	public static void main(String[] args) {
+		int min = 4;
+		int max = 9;
+		//Establishes the minimum and maximum
+		int counter = 0;
+		//Stores the current clock time
+		int range = max - min + 1;
+		int[] interArrivalTime = new int [99];
+		int[] arrivalTime = new int [99];
+		System.out.print("The arrival times are :");
+		for (int i = 0; i < interArrivalTime.length;i++) {
+			interArrivalTime[i] = (int)(Math.random()*range)+min; 
+			System.out.print(interArrivalTime[i]+" ");
+		}
+		System.out.print("\nThe service times are :");
+		for (int i = 0; i < interArrivalTime.length;i++) {
+			arrivalTime[i] = counter;
+			counter+= interArrivalTime[i];
+			
+			System.out.print(arrivalTime[i]+" ");
+		}
+		
+	}
+
+}
