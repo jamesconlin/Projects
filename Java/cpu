@@ -1,4 +1,4 @@
-package cpuscheduling;
+package cputest;
 
 import java.util.Scanner;
 
@@ -12,36 +12,60 @@ public class cpu {
 	int[] initialWaitTime = new int[5];
 	int[] totalWaitTime = new int[5];
 	int[] iterationCounter = new int [5];
-	int endCount = 0;
+	int[] turnAroundTime = new int [5];
+	int[] lastActivated = new int [5];
 	int b = 0;
 	int i = 0;
 	int counter = 0;
+	int contextswitch = 2;
+	int quantum = 10;
 	callLoop(serviceTime, arrivalTime);	
 	System.out.println(serviceTime[0]);
 	System.out.println(arrivalTime[0]);
-	while (endCount != 5) {
-		if (arrivalTime[i] >= counter && serviceTime[i] !=0) {
+	for (int endCount=0;endCount<5 ;i++) {
+		int serv = arrivalTime[i];
+		
+		if (serviceTime[i] != -100 && counter >= serv ){
+			totalWaitTime[i] += counter - lastActivated[i] ; 
+			System.out.println(counter);
+		
 			if (startTime[i] == 1) {
 				startTime[i] = counter;
-				initialWaitTime[i] = counter;
+		System.out.println(initialWaitTime[i] =  counter - arrivalTime[i]  );
 			}
-			counter = quantum(serviceTime, i, counter);
-			iterationCounter[i]++;
-			if (serviceTime[i] == 0) {
-				endTime[i] = counter;
-				endCount++;
-				serviceTime[i]= -100;
+			if (serviceTime[i]>quantum) {
+				serviceTime[i] += -quantum;
+				counter+=quantum;
 			}
-			counter +=2;
+			else {
+				counter += serviceTime[i];
+				serviceTime[i] = 0;
+				System.out.println("less then ten");
 			}
-		
-		i++;
-		if (i>=5) {
-			i=0;
 			System.out.println(counter);
+			
+			
+			counter +=contextswitch;
+		}
+			
+		if (serviceTime[i] == 0) {
+			serviceTime[i] = -100;
+			endCount ++;
+			endTime[i] = counter;
+			turnAroundTime[i] =  endTime[i]-startTime[i];
+			
+			}
+		lastActivated[i] = counter;
+		if(i==4) {
+			i=-1;
+			
 		}
 	}
-	System.out.println(serviceTime[0]+" "+iterationCounter[0]+" "+startTime[0]+" "+initialWaitTime[0]+" "+endTime[0]);
+	for (int c = 0; c <5; c++) {
+		System.out.println("ID #1 Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" turnaroundTime "+turnAroundTime[c]);
+	}
+	
+	//System.out.println(serviceTime[0]+" "+iterationCounter[0]+" "+startTime[0]+" "+initialWaitTime[0]+" "+endTime[0]);
 	}
 	public static void callLoop(int[] serviceTime,int[] arrivalTime) {
 		int i = 0;
