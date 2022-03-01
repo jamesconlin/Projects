@@ -17,9 +17,10 @@ public class cpu {
 	int b = 0;
 	int i = 0;
 	int counter = 0;
-	int contextswitch = 2;
-	int quantum = 10;
-	callLoop(serviceTime, arrivalTime);	
+	int quantum = quantum();
+	int contextswitch = contextSwitch();
+	
+	callLoop(serviceTime, arrivalTime, quantum, contextswitch);	
 	System.out.println(serviceTime[0]);
 	System.out.println(arrivalTime[0]);
 	for (int endCount=0;endCount<5 ;i++) {
@@ -44,30 +45,33 @@ public class cpu {
 			}
 			System.out.println(counter);
 			
+			if (serviceTime[i] == 0) {
+				serviceTime[i] = -100;
+				endCount ++;
+				endTime[i] = counter;
+				turnAroundTime[i] =  endTime[i]-startTime[i];
+				
+				}
+			lastActivated[i] = counter;
 			
 			counter +=contextswitch;
 		}
-			
-		if (serviceTime[i] == 0) {
-			serviceTime[i] = -100;
-			endCount ++;
-			endTime[i] = counter;
-			turnAroundTime[i] =  endTime[i]-startTime[i];
-			
-			}
-		lastActivated[i] = counter;
+		
 		if(i==4) {
 			i=-1;
 			
 		}
+		if (endCount == 5) {
+			
+		}
 	}
 	for (int c = 0; c <5; c++) {
-		System.out.println("ID #1 Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" turnaroundTime "+turnAroundTime[c]);
+		System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" turnaroundTime "+turnAroundTime[c]);
 	}
 	
 	//System.out.println(serviceTime[0]+" "+iterationCounter[0]+" "+startTime[0]+" "+initialWaitTime[0]+" "+endTime[0]);
 	}
-	public static void callLoop(int[] serviceTime,int[] arrivalTime) {
+	public static void callLoop(int[] serviceTime,int[] arrivalTime, int quantum, int contextSwitch) {
 		int i = 0;
 		while(i!=5) {
 		Scanner one = new Scanner(System.in);
@@ -82,19 +86,18 @@ public class cpu {
 		}
 
 		}
-	public static int quantum(int[] serviceTime,int i, int counter) {
-		if (serviceTime[i]<10) {
-			counter += serviceTime[i];
-			serviceTime[i] = 0 ;
-		}
-		else {
-			serviceTime[i]+= -10;
-			counter +=10;
-			
-		}
-		return counter;
+	public static int quantum() {
+		Scanner qua = new Scanner(System.in);
+		System.out.println("Please enter the amount of service time before switching to the next process");
+		int quantum = qua.nextInt();
+		return quantum;
 		
-		
+	}
+	public static int contextSwitch() {
+		Scanner con = new Scanner(System.in);
+		System.out.println("Please enter the amount for a context switch");
+		int contextSwitch = con.nextInt();
+		return contextSwitch;
 	}
 	}
 
