@@ -1,4 +1,4 @@
-package cputest;
+package cpuscheduling;
 
 import java.util.Scanner;
 
@@ -26,6 +26,8 @@ public class cpu {
 	//I is used to jump between arrays in the for statement
 	int counter = 0;
 	//Total number of processing iterations
+	int avgTurnAroundTime = 0;
+	int avgTotalWaitTime = 0;
 	int quantum = quantum();
 	int contextswitch = contextSwitch();
 	
@@ -79,7 +81,16 @@ public class cpu {
 	for (int c = 0; c <5; c++) {
 		System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" turnaroundTime "+turnAroundTime[c]);
 	}
-	
+	for (int c = 0; c<5; c++) {
+		avgTurnAroundTime += turnAroundTime[c];
+	}
+	for (int c = 0; c<5; c++) {
+		avgTotalWaitTime += totalWaitTime[c];
+	}
+	avgTurnAroundTime = avgTurnAroundTime/5;
+	avgTotalWaitTime = avgTotalWaitTime/5;
+	System.out.println("Average Turn Around Time "+avgTurnAroundTime);
+	System.out.println("Average Total Wait Time "+avgTotalWaitTime);
 	}
 	public static void callLoop(int[] serviceTime,int[] arrivalTime, int quantum, int contextSwitch) {
 		int i = 0;
@@ -129,3 +140,5 @@ public class cpu {
 		}
 	}
 		//Written By James Conlin 2/28/22
+
+
