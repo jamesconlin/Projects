@@ -1,0 +1,77 @@
+package cpuscheduling;
+
+import java.util.Scanner;
+
+public class cpu {
+	
+	public static void main(String[] args) {
+	int[] serviceTime = new int[5];
+	int[] arrivalTime = new int[5];
+	int[] startTime = new int [] {1,1,1,1,1};
+	int[] endTime = new int[5];
+	int[] initialWaitTime = new int[5];
+	int[] totalWaitTime = new int[5];
+	int[] iterationCounter = new int [5];
+	int endCount = 0;
+	int b = 0;
+	int i = 0;
+	int counter = 0;
+	callLoop(serviceTime, arrivalTime);	
+	System.out.println(serviceTime[0]);
+	System.out.println(arrivalTime[0]);
+	while (endCount != 5) {
+		if (arrivalTime[i] >= counter && serviceTime[i] !=0) {
+			if (startTime[i] == 1) {
+				startTime[i] = counter;
+				initialWaitTime[i] = counter;
+			}
+			counter = quantum(serviceTime, i, counter);
+			iterationCounter[i]++;
+			if (serviceTime[i] == 0) {
+				endTime[i] = counter;
+				endCount++;
+				serviceTime[i]= -100;
+			}
+			counter +=2;
+			}
+		
+		i++;
+		if (i>=5) {
+			i=0;
+			System.out.println(counter);
+		}
+	}
+	System.out.println(serviceTime[0]+" "+iterationCounter[0]+" "+startTime[0]+" "+initialWaitTime[0]+" "+endTime[0]);
+	}
+	public static void callLoop(int[] serviceTime,int[] arrivalTime) {
+		int i = 0;
+		while(i!=5) {
+		Scanner one = new Scanner(System.in);
+		System.out.println("Please enter the amount of service time required");
+		int numA = one.nextInt();
+		serviceTime[i] = numA;
+		Scanner two = new Scanner(System.in);
+		System.out.println("Please enter the arrival time of this process id");
+		int numB = two.nextInt();
+		arrivalTime[i] = numB;
+		i++;
+		}
+
+		}
+	public static int quantum(int[] serviceTime,int i, int counter) {
+		if (serviceTime[i]<10) {
+			counter += serviceTime[i];
+			serviceTime[i] = 0 ;
+		}
+		else {
+			serviceTime[i]+= -10;
+			counter +=10;
+			
+		}
+		return counter;
+		
+		
+	}
+	}
+
+
