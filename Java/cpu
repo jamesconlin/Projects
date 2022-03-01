@@ -27,7 +27,9 @@ public class cpu {
 	int counter = 0;
 	//Total number of processing iterations
 	int avgTurnAroundTime = 0;
+	//Averages the turn around time for each process
 	int avgTotalWaitTime = 0;
+	//Averages the total wait time for each process
 	int quantum = quantum();
 	int contextswitch = contextSwitch();
 	
@@ -140,5 +142,6 @@ public class cpu {
 		}
 	}
 		//Written By James Conlin 2/28/22
+		
 
 
