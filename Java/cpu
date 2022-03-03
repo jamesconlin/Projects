@@ -83,10 +83,9 @@ public class cpu {
 	for (int c = 0; c <5; c++) {
 		System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" turnaroundTime "+turnAroundTime[c]);
 	}
+	//After printing out the process values then it computes average turn around time and total wait time
 	for (int c = 0; c<5; c++) {
 		avgTurnAroundTime += turnAroundTime[c];
-	}
-	for (int c = 0; c<5; c++) {
 		avgTotalWaitTime += totalWaitTime[c];
 	}
 	avgTurnAroundTime = avgTurnAroundTime/5;
@@ -142,7 +141,6 @@ public class cpu {
 		}
 	}
 		//Written By James Conlin 2/28/22
-		//Updated last 3/1/22
+		//Updated last 3/3/22
+	
 		
-
-
