@@ -82,12 +82,11 @@ public class cpu {
 	//After the computing is done this prints out all the values that are necessary for this project
 	for (int c = 0; c <5; c++) {
 		System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" turnaroundTime "+turnAroundTime[c]);
-	}
-	//After printing out the process values then it computes average turn around time and total wait time
-	for (int c = 0; c<5; c++) {
 		avgTurnAroundTime += turnAroundTime[c];
 		avgTotalWaitTime += totalWaitTime[c];
+		//After printing out the process values then it computes average turn around time and total wait time
 	}
+	//Calculate average total times
 	avgTurnAroundTime = avgTurnAroundTime/5;
 	avgTotalWaitTime = avgTotalWaitTime/5;
 	System.out.println("Average Turn Around Time "+avgTurnAroundTime);
