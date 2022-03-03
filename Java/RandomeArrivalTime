@@ -10,13 +10,13 @@ public class RandomArrivalTime {
 		//Stores the current clock time
 		int range = max - min + 1;
 		int[] interArrivalTime = new int [99];
-		int[] arrivalTime = new int [99];
-		System.out.print("The arrival times are :");
+		int[] arrivalTime = new int [100];
+		System.out.print("The interarrival times are :");
 		for (int i = 0; i < interArrivalTime.length;i++) {
 			interArrivalTime[i] = (int)(Math.random()*range)+min; 
 			System.out.print(interArrivalTime[i]+" ");
 		}
-		System.out.print("\nThe service times are :");
+		System.out.print("\nThe arrival times are :");
 		for (int i = 0; i < interArrivalTime.length;i++) {
 			arrivalTime[i] = counter;
 			counter+= interArrivalTime[i];
@@ -35,8 +35,8 @@ public class RandomArrivalTime {
 		//Stores the current clock time
 		int range = max - min + 1;
 		int[] interArrivalTime = new int [99];
-		int[] arrivalTime = new int [99];
-		System.out.print("\nThe arrival times are :");
+		int[] arrivalTime = new int [100];
+		System.out.print("\nThe interarrival times are :");
 		for (int i = 0; i < interArrivalTime.length;i++) {
 			interArrivalTime[i] = (int)(Math.random()*range)+min; 
 			System.out.print(interArrivalTime[i]+" ");
