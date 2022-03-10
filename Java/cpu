@@ -30,6 +30,9 @@ public class cpu {
 	//Averages the turn around time for each process
 	int avgTotalWaitTime = 0;
 	//Averages the total wait time for each process
+	boolean counterfailSafe = false;
+	//This increments the counter by 1 every time it loops and the counter does not increase so that the CPU can 
+	//process a process once it arrives instead of stalling failing to allow more time to pass
 	int quantum = quantum();
 	int contextswitch = contextSwitch();
 	
@@ -46,7 +49,7 @@ public class cpu {
 			//If the process is being processed for the first time
 			if (startTime[i] == 1) {
 				startTime[i] = counter;
-				initialWaitTime[i] =  counter - arrivalTime[i]  ;
+				initialWaitTime[i] =  counter - arrivalTime[i];
 			}
 			//Most likely scenario where the value is still bigger than the quantum
 			if (serviceTime[i]>quantum) {
@@ -73,8 +76,15 @@ public class cpu {
 			//Just keeps track of the last time that the process was accessed
 			counter +=contextswitch;
 			//Increase the counter by whatever the context switch is set to
+			counterfailSafe = true;
 			}
 		if(i==4) {
+			if (counterfailSafe == false) {
+				//This checks to make sure the counter has increased during this cycle if not
+				//Increase counter aka clock by 1 to make sure it doesn't loop forever
+				counter ++;
+			}
+			counterfailSafe = false;
 			i=-1;
 			//Reset the i value when it gets above the index of the arrays
 		}
@@ -140,6 +150,6 @@ public class cpu {
 		}
 	}
 		//Written By James Conlin 2/28/22
-		//Updated last 3/3/22
+		//Updated last 3/10/22
 	
 		
