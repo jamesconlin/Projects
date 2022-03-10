@@ -86,7 +86,7 @@ public class cpu {
 			}
 			counterfailSafe = false;
 			i=-1;
-			//Reset the i value when it gets above the index of the arrays
+			//Reset the i value when it gets above the index of the arrays;
 		}
 	}
 	//After the computing is done this prints out all the values that are necessary for this project
