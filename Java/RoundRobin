@@ -5,22 +5,22 @@ import java.util.Scanner;
 public class RoundRobin {
 	
 	public static void main(String[] args) {
-	int[] serviceTime = new int[5];
+	int[] serviceTime = new int[100];
 	//Stores the values of the processes and how much processing they have left to do
-	int[] arrivalTime = new int[5];
+	int[] arrivalTime = new int[100];
 	//Stores the values of when the processes should be available to the program
-	int[] startTime = new int [] {1,1,1,1,1};
+	int[] startTime = new int [100];
 	//Stores the start time to be overwritten once the processor starts. Has default values so the
 	//program knows that the process hasn't been run before
-	int[] endTime = new int[5];
+	int[] endTime = new int[100];
 	//Stores when the processor is done
-	int[] initialWaitTime = new int[5];
+	int[] initialWaitTime = new int[100];
 	//Stores how long it takes from when the process is received to when it starts initially
-	int[] totalWaitTime = new int[5];
+	int[] totalWaitTime = new int[100];
 	//Total time the process spends not being processed before it is done
-	int[] turnAroundTime = new int [5];
+	int[] turnAroundTime = new int [100];
 	//Total time the process spends waiting to process after it has arrived
-	int[] lastActivated = new int [5];
+	int[] lastActivated = new int [100];
 	//This allows for calculation of total wait time comparing the difference of the counter to the last value stored
 	int i = 0;
 	//I is used to jump between arrays in the for statement
@@ -150,6 +150,6 @@ public class RoundRobin {
 		}
 	}
 		//Written By James Conlin 2/28/22
-		//Updated last 3/23/22
+		//Updated last 3/10/22
 	
 		
