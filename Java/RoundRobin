@@ -141,6 +141,8 @@ public class RoundRobin {
 				//Reset the i value when it gets above the index of the arrays;
 			}
 		}
+		System.out.println( );
+		System.out.println("Quantum is "+quantum);
 		//After the computing is done this prints out all the values that are necessary for this project
 		for (int c = 0; c <serviceTimeCopy.length; c++) {
 			System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" Turn Around Time "+turnAroundTime[c]);
