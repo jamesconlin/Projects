@@ -1,0 +1,26 @@
+package cpuscheduling;
+
+public class FindTheMedianNoSorting {
+	public static void main(String[] args) {
+		
+	}
+public int median(int[] nums) {
+	int i;
+	for(i=0; i < nums.length; i++) {
+		int bigger = 0;
+		int smaller = 0;
+		for(int k=0; k < nums.length; k++) {
+			if (nums[k]>nums[i]) {
+				bigger++;
+			}
+			if (nums[k]<nums[i]) {
+				smaller++;
+			}
+		}
+		if (smaller==bigger) {
+			break;
+		}
+	}
+	return nums[i];
+	}
+}
