@@ -11,11 +11,19 @@ public class RoundRobin {
 	//Stores the values of when the processes should be available to the program
 	int[] interArrivalTime = new int [100];
 	//Stores the values of the in between arrival time between each process
-	int quantum = quantum();
+	//int quantum = quantum();
 	int contextswitch = contextSwitch();
+	//Initialize both of these for keyboard input
+	int quantum = 1;
+	;
 	//This asks the user to set the quantum soon to be multiple quantums
 	callLoop(serviceTime, arrivalTime,interArrivalTime, quantum, contextswitch);
+	//This loop randomizes the values in each array to whatever range is set
 	calculateLoop(serviceTime, arrivalTime, interArrivalTime, quantum, contextswitch);
+	//This loop calculates using the first quantum
+	quantum = 3;
+	calculateLoop(serviceTime, arrivalTime, interArrivalTime, quantum, contextswitch);
+	//This loop calculates using the second quantum
 	}
 	public static void callLoop(int[] serviceTime,int[] arrivalTime, int[] interArrivalTime, int quantum, int contextswitch) {
 		
@@ -27,12 +35,13 @@ public class RoundRobin {
 			int range = max - min + 1;
 			for (int i = 0; i < interArrivalTime.length;i++) {
 				interArrivalTime[i] = (int)(Math.random()*range)+min; 
+				//Essentially uses math random to assign this array 100 random values between 4 and 9
 			}
 			System.out.print("\nThe arrival times are :");
 			for (int i = 0; i < arrivalTime.length;i++) {
 				arrivalTime[i] = counter;
 				counter+= interArrivalTime[i];
-				
+				//Takes value from the interArrivalArray and then just designates it to be a 
 				System.out.print(arrivalTime[i]+" ");
 			}
 			min = 2;
@@ -45,6 +54,8 @@ public class RoundRobin {
 			for (int i = 0; i < serviceTime.length;i++) {
 				serviceTime[i] = (int)(Math.random()*range)+min; 
 				System.out.print(serviceTime[i]+" ");
+				//Randomly generates each service time using math random and the provided range
+				//Then prints them out as a proof if you really wanna do the math
 			}
 		
 		
@@ -52,6 +63,7 @@ public class RoundRobin {
 	
 	public static void calculateLoop(int[] serviceTime,int[] arrivalTime, int[] interArrivalTime, int quantum, int contextswitch) {
 		int[] serviceTimeCopy = serviceTime.clone();
+		//Stores a clone of the service time to manipulate to leave the orignial service time unaffected
 		int[] startTime = new int [] {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};
 		//Stores the start time to be overwritten once the processor starts. Has default values so the
 		//program knows that the process hasn't been run before
@@ -72,15 +84,17 @@ public class RoundRobin {
 		int avgTurnAroundTime = 0;
 		//Averages the turn around time for each process
 		int avgInterArrivalTime = 0;
+		//Averages the arrival time for each process
 		int avgServiceTime = 0;
+		//Averages the service time for each process
 		int avgTotalWaitTime = 0;
 		//Averages the total wait time for each process
 		boolean counterfailSafe = false;
 		//This increments the counter by 1 every time it loops and the counter does not increase so that the CPU can 
 		//process a process once it arrives instead of stalling failing to allow more time to pass
-		for (int endCount=0;endCount<serviceTime.length ;i++) {
+		for (int endCount=0;endCount<serviceTimeCopy.length ;i++) {
 			//Statement will continue to loop until all processes are dealt with
-			if (serviceTime[i] != -100 && counter >= arrivalTime[i] ){
+			if (serviceTimeCopy[i] != -100 && counter >= arrivalTime[i] ){
 				//If the value is not equal to the value I use as a throw away and it is currently or passed the arrival time
 				totalWaitTime[i] += counter - lastActivated[i] ; 
 				//This allows for calculation of total wait time comparing the difference of the counter to the last value stored
@@ -91,21 +105,21 @@ public class RoundRobin {
 					initialWaitTime[i] =  counter - arrivalTime[i];
 				}
 				//Most likely scenario where the value is still bigger than the quantum
-				if (serviceTime[i]>quantum) {
-					serviceTime[i] += -quantum;
+				if (serviceTimeCopy[i]>quantum) {
+					serviceTimeCopy[i] += -quantum;
 					counter+=quantum;
 					//Take the counter and add the quantum as to increase it.
 				}
 				else {
-					counter += serviceTime[i];
-					serviceTime[i] = 0;
-					System.out.println("less then ten");
+					counter += serviceTimeCopy[i];
+					serviceTimeCopy[i] = 0;
+					//System.out.println("less then ten"); Used to debug
 					//Else take the remaining value and add it to the counter and zero it out
 				}
-				System.out.println(counter);
+				//System.out.println(counter); Used to debug
 				
-				if (serviceTime[i] == 0) {
-					serviceTime[i] = -100;
+				if (serviceTimeCopy[i] == 0) {
+					serviceTimeCopy[i] = -100;
 					endCount ++;
 					endTime[i] = counter;
 					turnAroundTime[i] =  endTime[i]-startTime[i];
@@ -117,7 +131,7 @@ public class RoundRobin {
 				//Increase the counter by whatever the context switch is set to
 				counterfailSafe = true;
 				}
-			if(i==serviceTime.length-1) {
+			if(i==serviceTimeCopy.length-1) {
 				if (counterfailSafe == false) {
 					//This checks to make sure the counter has increased during this cycle if not
 					//Increase counter aka clock by 1 to make sure it doesn't loop forever
@@ -129,22 +143,28 @@ public class RoundRobin {
 			}
 		}
 		//After the computing is done this prints out all the values that are necessary for this project
-		for (int c = 0; c <serviceTime.length; c++) {
-			System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" turnaroundTime "+turnAroundTime[c]);
+		for (int c = 0; c <serviceTimeCopy.length; c++) {
+			System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" Turn Around Time "+turnAroundTime[c]);
 			avgInterArrivalTime += interArrivalTime[c];
 			avgServiceTime += serviceTime[c];
 			avgTurnAroundTime += turnAroundTime[c];
 			avgTotalWaitTime += totalWaitTime[c];
-			//After printing out the process values then it computes average turn around time and total wait time
+			//After printing out the process values then it computes average interarrival time, average service time, 
+			//average turn around, and average total wait time
+			
 		}
 		//Calculate average total times
+		avgInterArrivalTime = avgInterArrivalTime/interArrivalTime.length;
+		avgServiceTime = avgServiceTime/serviceTime.length;
 		avgTurnAroundTime = avgTurnAroundTime/turnAroundTime.length;
 		avgTotalWaitTime = avgTotalWaitTime/turnAroundTime.length;
+		System.out.println("Average Interarrival Time "+avgInterArrivalTime);
+		System.out.println("Average Service Time "+avgServiceTime);
 		System.out.println("Average Turn Around Time "+avgTurnAroundTime);
 		System.out.println("Average Total Wait Time "+avgTotalWaitTime);
 		}
 	
-		
+		/* Disabled since no input is required to meet project specifications
 	public static int quantum() {
 		
 		Scanner qua = new Scanner(System.in);
@@ -158,6 +178,7 @@ public class RoundRobin {
 		//Take integer and set variable
 		
 	}
+	*/
 	public static int contextSwitch() {
 		Scanner con = new Scanner(System.in);
 		System.out.println("Please enter the amount for a context switch");
@@ -169,6 +190,7 @@ public class RoundRobin {
 		//Receive next response from I/O
 		//Take integer and set variable
 		}
+		
 	}
 		//Written By James Conlin 2/28/22
 		//Updated last 3/23/22
