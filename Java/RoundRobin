@@ -15,7 +15,6 @@ public class RoundRobin {
 	int contextswitch = contextSwitch();
 	//Initialize both of these for keyboard input
 	int quantum = 1;
-	;
 	//This asks the user to set the quantum soon to be multiple quantums
 	callLoop(serviceTime, arrivalTime,interArrivalTime, quantum, contextswitch);
 	//This loop randomizes the values in each array to whatever range is set
@@ -176,7 +175,6 @@ public class RoundRobin {
 		//Print out a message
 		//Receive next response from I/O
 		//Take integer and set variable
-		
 	}
 	*/
 	public static int contextSwitch() {
@@ -193,6 +191,6 @@ public class RoundRobin {
 		
 	}
 		//Written By James Conlin 2/28/22
-		//Updated last 3/23/22
+		//Updated last 3/24/22
 	
 		
