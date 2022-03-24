@@ -21,6 +21,7 @@ public class RoundRobin {
 	calculateLoop(serviceTime, arrivalTime, interArrivalTime, quantum, contextswitch);
 	//This loop calculates using the first quantum
 	quantum = 3;
+	contextswitch = 1;
 	calculateLoop(serviceTime, arrivalTime, interArrivalTime, quantum, contextswitch);
 	//This loop calculates using the second quantum
 	}
@@ -95,7 +96,10 @@ public class RoundRobin {
 			//Statement will continue to loop until all processes are dealt with
 			if (serviceTimeCopy[i] != -100 && counter >= arrivalTime[i] ){
 				//If the value is not equal to the value I use as a throw away and it is currently or passed the arrival time
-				totalWaitTime[i] += counter - lastActivated[i] ; 
+				
+				//totalWaitTime[i] += (endTime[i]-startTime[i]);
+				//totalWaitTime[i] += startTime[i] - (lastActivated[i] -counter); 
+				//totalWaitTime[i] += counter - startTime[i] -serviceTimeCopy[i];
 				//This allows for calculation of total wait time comparing the difference of the counter to the last value stored
 				
 				//If the process is being processed for the first time
@@ -121,7 +125,8 @@ public class RoundRobin {
 					serviceTimeCopy[i] = -100;
 					endCount ++;
 					endTime[i] = counter;
-					turnAroundTime[i] =  endTime[i]-startTime[i];
+					turnAroundTime[i] =  endTime[i]-arrivalTime[i];
+					totalWaitTime[i] = (endTime[i]-arrivalTime[i]) -serviceTime[i];
 					//If it gets zeroed out complete the rest of the statistics 
 					}
 				lastActivated[i] = counter;
@@ -129,6 +134,8 @@ public class RoundRobin {
 				counter +=contextswitch;
 				//Increase the counter by whatever the context switch is set to
 				counterfailSafe = true;
+				
+				
 				}
 			if(i==serviceTimeCopy.length-1) {
 				if (counterfailSafe == false) {
@@ -143,9 +150,10 @@ public class RoundRobin {
 		}
 		System.out.println( );
 		System.out.println("Quantum is "+quantum);
+		System.out.println("Context Switch is "+contextswitch);
 		//After the computing is done this prints out all the values that are necessary for this project
 		for (int c = 0; c <serviceTimeCopy.length; c++) {
-			System.out.println("Process ID #"+(c+1)+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" Turn Around Time "+turnAroundTime[c]);
+			System.out.println("Process ID #"+(c+1)+" Service Time "+serviceTime[c]+" Arrival Time "+arrivalTime[c]+ " Start Time "+startTime[c]+" End Time "+endTime[c]+" Initial Wait Time "+initialWaitTime[c]+" Total Wait Time "+ totalWaitTime[c]+" Turn Around Time "+turnAroundTime[c]);
 			avgInterArrivalTime += interArrivalTime[c];
 			avgServiceTime += serviceTime[c];
 			avgTurnAroundTime += turnAroundTime[c];
@@ -158,9 +166,11 @@ public class RoundRobin {
 		avgInterArrivalTime = avgInterArrivalTime/interArrivalTime.length;
 		avgServiceTime = avgServiceTime/serviceTime.length;
 		avgTurnAroundTime = avgTurnAroundTime/turnAroundTime.length;
-		avgTotalWaitTime = avgTotalWaitTime/turnAroundTime.length;
-		System.out.println("Average Interarrival Time "+avgInterArrivalTime);
+		avgTotalWaitTime = avgTotalWaitTime/totalWaitTime.length;
+		System.out.println("Range of Service Times 2-5");
+		System.out.println("Range of Interarrival Times 4-9");
 		System.out.println("Average Service Time "+avgServiceTime);
+		System.out.println("Average Interarrival Time "+avgInterArrivalTime);
 		System.out.println("Average Turn Around Time "+avgTurnAroundTime);
 		System.out.println("Average Total Wait Time "+avgTotalWaitTime);
 		}
