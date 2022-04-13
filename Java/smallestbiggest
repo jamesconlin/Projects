@@ -21,3 +21,4 @@ public class smallestbiggest {
         int[] num1 = {start,ending};
         return(num1);
       }
+      
