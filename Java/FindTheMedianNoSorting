@@ -1,26 +1,22 @@
-package cpuscheduling;
-
-public class FindTheMedianNoSorting {
-	public static void main(String[] args) {
-		
-	}
-public int median(int[] nums) {
-	int i;
-	for(i=0; i < nums.length; i++) {
-		int bigger = 0;
-		int smaller = 0;
-		for(int k=0; k < nums.length; k++) {
-			if (nums[k]>nums[i]) {
-				bigger++;
-			}
-			if (nums[k]<nums[i]) {
-				smaller++;
-			}
+public int[] minMax(int[] nums, int begin, int end) {
+	int[] num1 = {0,0}
+	int min = 1000;
+	int max = -1000;
+	return (getMinMax(nums, begin, end,num1,min,max));
+	
+  }
+  public int[] getMinMax(int[] nums, int begin, int end, int min, int max){
+	  if(begin==end){
+		if(max < nums[begin]){
+		  max = nums[begin];
 		}
-		if (smaller==bigger) {
-			break;
+	  
+		if(min > nums[i]){
+		  min = nums[i]
 		}
-	}
-	return nums[i];
-	}
-}
+		return;
+	  }
+	  if(end - begin ==1){
+		if (nums[begin]<nums[end})
+	  }
+  }
