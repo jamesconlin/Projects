@@ -1,0 +1,23 @@
+package cpuscheduling;
+
+public class smallestbiggest {
+	public static void main(String[] args) {
+        int[] test = {1,4,7,9}
+		minMax()
+	}
+    public int[] minMax(int[] nums, int begin, int end){  
+        int i = 0;
+        int start = nums[i];
+        int ending = nums[i];
+        while(i<nums.length){
+          if (start>nums[i]){
+            start = nums[i];
+          }
+          if(ending<nums[i]){
+            ending = nums[i];
+          }
+          i++;
+        }
+        int[] num1 = {start,ending};
+        return(num1);
+      }
